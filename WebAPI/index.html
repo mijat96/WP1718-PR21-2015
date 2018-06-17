@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/jquery-1.10.2.js"></script>    <!--import jquery-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("p").click(function () {
+                alert($(this).text());
+            });
+            $("#load-products").click(function () {
+                $.get("/api/products", function (data, status) {
+                    let tableOfProducts = "<table border='1'>";
+                    for (product in data) {
+                        tableOfProducts += `<tr><td>${data[product].Id}</td><td>${data[product].Name}</td></tr>`;
+                    }
+                    tableOfProducts += "</table>";
+                    $("#content").html(tableOfProducts);    /*$(".load-products").html(tableOfProducts);*/
+                });
+                $(".product-form button").click(function () {
+                    let newProduct = {};
+                    $(".product-form input").each(function () {
+                        newProduct[this.Name] = this.value;
+                    });
+                    $.ajax({
+                        method: "POST",
+                        url: "/api/products",
+                        data: newProduct
+                    }).error(function (msg) {
+                        alert("Greska");
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>INDEX!</h1>
+    <p>tekst para 1</p>
+    <p>tekst para 2</p>
+    <p>tekst para 3</p>
+    <p>tekst para 4</p>
+    <p>tekst para 5</p>
+    <button id="load-products">Load products</button>   <!--button class="load-products"-->
+    <div id="content"></div>
+    <hr/>
+    Add new product:<br/>
+    <!--u products gadja post metodu, moguce je imati vise post metoda ali sa razlikom u parametrima-->
+    <!--<form method="post" action="/api/products">      
+        name: <input type="text" name="name"/><br/>
+        <input type="submit" />
+    </form>-->
+
+    <div class="product-form">
+        <label>Name:</label>
+        <input type="text" name="Name"/>
+        <button>Add</button>
+
+</body>
+</html>
