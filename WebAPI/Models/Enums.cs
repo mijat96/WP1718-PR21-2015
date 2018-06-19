@@ -17,4 +17,21 @@ namespace WebAPI.Models
         VOZAC,
         DISPECER,
     }
+
+    public enum EnumAutomobil
+    {
+        PUTNICKI,
+        KOMBI,
+    }
+
+    public enum EnumStatus
+    {
+        KREIRANA,
+        FORMIRANA,
+        OBRADJENA,
+        PRIHVAĆENA,
+        OTKAZANA,
+        NEUSPESNA,
+        USPESNA,
+    }
 }
