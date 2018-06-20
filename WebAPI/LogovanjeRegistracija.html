@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#Prijava").click(function () {
+                $("#tabelaPrijava, #prijava, #naslovP").toggle();
+            });
+            $("#Registracija").click(function () {
+                $("#tabelaRegistracija, #registracija, #naslovR").toggle();
+            });
+        });
+    </script>
+    <style>
+        body {
+            background-image: url("pozadina.jpg");
+            background-repeat: no-repeat;
+            background-position: inherit;
+            background-size: cover;
+        }
+
+        input[type="text"], input[type="email"], select, input[type="password"], textarea {
+            background-color: transparent;
+            font-weight: bold;
+            color: #ffff00;
+        }
+
+        button, #prijava {
+            color: black !important;
+        }
+
+        b, select {
+            color: #ff0000;
+        }
+    </style>
+</head >
+            <body>
+                <button id="Prijava">Prijava</button>
+                <button id="Registracija">Registracija</button>
+            
+                <h2 id="naslovP"><b>Prijavi se</b></h2>
+
+
+            <table border=1 id="tabelaPrijava">
+                <tr>
+                    <td><b>Korisnicko ime</b></td>
+                    <td><input id="korIme" type="text" name="KorisnickoIme" /></td>
+                </tr>
+                <tr>
+                    <td><b>Lozinka</b></td>
+                    <td><input id="korPass" type="password" name="Lozinka" /></td>
+                </tr>
+            </table>
+            <button id="prijava" type="button">Prijavi se</button>
+
+                <h2 id="naslovR"><b>Registracija</b></h2>
+
+                <table border=1 id="tabelaRegistracija">
+                    <tr>
+                        <td><b>Korisnicko ime</b></td>
+                        <td><input id="korImeReg" type="text" name="KorisnickoIme" /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Lozinka</b></td>
+                        <td><input id="korPassReg" type="password" name="Lozinka" /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Ime</b></td>
+                        <td><input id="ime" type="text" name="Ime" /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Prezime</b></td>
+                        <td><input id="prezime" type="text" name="Prezime" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><b>JMBG</b></td>
+                        <td><input id="jmbg" type="text" name="JMBG" /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Pol</b></td>
+                        <td>
+                            <select name="Pol" id="pol">
+                                <option>
+                                    MUSKO
+                            </option>
+                                <option>
+                                    ZENSKO
+                            </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Broj telefona</b></td>
+                        <td><input id="brTelefona" type="text" name="KontaktTelefon" /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Email adresa</b></td>
+                        <td><input id="email" type="email" name="Email" /></td>
+                    </tr>
+            </table>
+            <button id="registracija" type="button">Registruj se</button>
+            </body>
+</html >
