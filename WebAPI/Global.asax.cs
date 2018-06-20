@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebAPI.Models;
 
 namespace WebAPI
 {
@@ -18,6 +19,8 @@ namespace WebAPI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Musterije users = new Musterije(@"C:\WebAPI\WP1718-PR21-2015\WebAPI\App_Data\Musterije.txt");
         }
     }
 }

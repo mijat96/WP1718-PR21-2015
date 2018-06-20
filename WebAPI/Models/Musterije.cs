@@ -8,7 +8,7 @@ namespace WebAPI.Models
 {
     public class Musterije
     {
-        public static Dictionary<string, Musterija> musterije { get; set; } = new Dictionary<int, Musterija>();
+        public static Dictionary<string, Musterija> musterije { get; set; } = new Dictionary<string, Musterija>();
 
         public Musterije() { }
 
@@ -23,7 +23,7 @@ namespace WebAPI.Models
             while ((line = sr.ReadLine()) != null)
             {
                 string[] tokens = line.Split('|');
-                if (tokens[5].Equals("MUSKO"))
+                if (tokens[4].Equals("Musko"))
                 {
                     pol = EnumPol.MUSKO;
                 }
@@ -31,11 +31,11 @@ namespace WebAPI.Models
                 {
                     pol = EnumPol.ZENSKO;
                 }
-                if (tokens[9].Equals("Musterija"))
+                if (tokens[8].Equals("Musterija"))
                 {
                     uloga = EnumUloga.MUSTERIJA;
                 }
-                else if (tokens[9].Equals("Dispecer"))
+                else if (tokens[8].Equals("Dispecer"))
                 {
                     uloga = EnumUloga.DISPECER;
                 }
@@ -43,6 +43,7 @@ namespace WebAPI.Models
                 {
                     uloga = EnumUloga.VOZAC;
                 }
+
                 //public Musterija(string kIme, string lozinka, string ime, string prezime, EnumPol pol, string jmbg, string kontakt, string email, EnumUloga uloga)
                 Musterija k = new Musterija(tokens[0], tokens[1], tokens[2], tokens[3], pol, tokens[6], tokens[7], tokens[8], uloga);
                 musterije.Add(k.KorisnickoIme, k);

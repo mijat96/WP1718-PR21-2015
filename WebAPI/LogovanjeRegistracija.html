@@ -7,10 +7,10 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $("#Prijava").click(function () {
+            $("#Registracija").click(function () {
                 $("#tabelaPrijava, #prijava, #naslovP").toggle();
             });
-            $("#Registracija").click(function () {
+            $("#Prijava").click(function () {
                 $("#tabelaRegistracija, #registracija, #naslovR").toggle();
             });
         
@@ -32,7 +32,7 @@
                     if (data) {
                         alert('UUspesno ste se ulogovali');
                         localStorage.setItem("logovan", korisnik.KorisnickoIme);
-                        $(location).attr('href', 'HtmlPage1.html');
+                        $(location).attr('href', 'Korisnik.html');
                     } else {
                         alert('Niste se ulogovali');
                     }
