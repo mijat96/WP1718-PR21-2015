@@ -13,7 +13,64 @@
             $("#Registracija").click(function () {
                 $("#tabelaRegistracija, #registracija, #naslovR").toggle();
             });
+        
+
+        $("#prijava").click(function () {
+            let korisnik = {
+                KorisnickoIme: `${$('#korIme').val()}`,
+                Lozinka: `${$('#korPass').val()}`,
+            };
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/Login',
+                data: JSON.stringify(korisnik),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    if (data) {
+                        alert('UUspesno ste se ulogovali');
+                        localStorage.setItem("logovan", korisnik.KorisnickoIme);
+                        $(location).attr('href', 'HtmlPage1.html');
+                    } else {
+                        alert('Niste se ulogovali');
+                    }
+                },
+            })
         });
+
+        $("#registracija").click(function () {
+            let korisnik = {
+                KorisnickoIme: `${$('#korImeReg').val()}`,
+                Lozinka: `${$('#korPassReg').val()}`,
+                Ime: `${$('#ime').val()}`,
+                Prezime: `${$('#prezime').val()}`,
+                Pol: `${$('#pol').val()}`,
+                JMBG: ` ${$('#jmbg').val()}`,
+                Email: `${$('#email').val()}`,
+                KontaktTelefon: `${$('#brTelefona').val()}`,
+            };
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/Musterija',
+                data: JSON.stringify(korisnik),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (data) {
+                    if (data) {
+                        alert('Uspesno ste se registrovali');
+                        $(location).attr('href', 'LogovanjeRegistracija.html');
+                    } else {
+                        alert('Registracija nije uspesna');
+                    }
+                },
+            })
+        });
+        });
+
     </script>
     <style>
         body {
