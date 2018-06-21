@@ -182,6 +182,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Administratori.txt" />
     <Content Include="App_Data\Musterije.txt" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
@@ -189,6 +190,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="Korisnik.html" />
     <Content Include="LogovanjeRegistracija.html" />
     <Content Include="pozadina.jpg" />
     <Content Include="Scripts\bootstrap.js" />
