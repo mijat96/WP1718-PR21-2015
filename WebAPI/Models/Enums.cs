@@ -29,9 +29,10 @@ namespace WebAPI.Models
         KREIRANA,
         FORMIRANA,
         OBRADJENA,
-        PRIHVAĆENA,
+        PRIHVACENA,
         OTKAZANA,
         NEUSPESNA,
         USPESNA,
+        TRAJE,
     }
 }

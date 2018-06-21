@@ -10,15 +10,16 @@ namespace WebAPI.Models
         public Lokacija lokacija { get; set; }
         public Automobil automobil { get; set; }
 
-        public bool slobodan;
+        public bool slobodan { get; set; }
 
         public Vozac() { }
 
-        public Vozac(string kIme, string lozinka, string ime, string prezime, EnumPol pol, string jmbg, string kontakt, string email, EnumUloga uloga) 
+        public Vozac(string kIme, string lozinka, string ime, string prezime, EnumPol pol, string jmbg, string kontakt, string email, EnumUloga uloga, Lokacija lok, Automobil auto, bool slobodan) 
                     : base(kIme, lozinka, ime, prezime, pol, jmbg, kontakt, email, uloga)
         {
-            lokacija = new Lokacija();
-            automobil = new Automobil();
+            this.slobodan = slobodan;
+            this.lokacija = lok;
+            this.automobil = auto;
         }
 
     }

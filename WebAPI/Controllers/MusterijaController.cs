@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
             FileStream stream = new FileStream(@"C:\WebAPI\WP1718-PR21-2015\WebAPI\App_Data\Musterije.txt", FileMode.Append);
             using (StreamWriter tw = new StreamWriter(stream))
             {
-                string upis = k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga;
+                string upis = '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga;
                 tw.WriteLine(upis);
             }
             stream.Close();
