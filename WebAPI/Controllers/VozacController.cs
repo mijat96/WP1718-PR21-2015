@@ -53,10 +53,11 @@ namespace WebAPI.Controllers
 
         private void UpisTxt(Vozac k)
         {
-            FileStream stream = new FileStream(@"C:\Users\Mijat\Downloads\WebTaxi-master ELENA V3\WebAPI\WebAPI\App_Data\Vozaci.txt", FileMode.Append);
+            string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/Vozaci.txt");
+            FileStream stream = new FileStream(path, FileMode.Append);
             using (StreamWriter tw = new StreamWriter(stream))
             {
-                string upis = '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.Lokacija.IdLok.ToString() + '|' + k.Lokacija.X.ToString() + '|' + k.Lokacija.Y.ToString() + '|' + k.Lokacija.Adresa.IdAdr.ToString() + '|' + k.Lokacija.Adresa.UlicaIBroj + '|' + k.Lokacija.Adresa.NaseljenoMjesto + '|' + k.Lokacija.Adresa.PozivniBroj + '|' + k.Automobil.IdVozaca.ToString() + '|' + k.Automobil.Godiste + '|' + k.Automobil.Registracija + '|' + k.Automobil.BrojVozila.ToString() + '|' + k.Automobil.TipAuta + '|' + k.Zauzet.ToString() + '|' + k.Banovan.ToString();
+                string upis = '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.lokacija.IdLokacije.ToString() + '|' + k.lokacija.X.ToString() + '|' + k.lokacija.Y.ToString() + '|' + k.lokacija.adresa.IdAdrese.ToString() + '|' + k.lokacija.adresa.UlicaBroj + '|' + k.lokacija.adresa.NaseljenoMestoPBroj + '|' + k.automobil.VozacKorIme + '|' + k.automobil.Godiste + '|' + k.automobil.Registracija + '|' + k.automobil.BrojVozila.ToString() + '|' + k.automobil.TipAutomobila + '|' + k.slobodan.ToString();
                 tw.WriteLine(upis);
             }
             stream.Close();
@@ -93,18 +94,19 @@ namespace WebAPI.Controllers
 
         private void UpisIzmjenaTxt(Vozac k)
         {
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Mijat\Downloads\WebTaxi-master ELENA V3\WebAPI\WebAPI\App_Data\Vozaci.txt");
+            string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/Vozaci.txt");
+            string[] lines = System.IO.File.ReadAllLines(path);
             string allString = "";
             for (int i = 0; i < lines.Length; i++)
             {
                 if (lines[i].Contains(k.KorisnickoIme))
                 {
-                    allString += '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.Lokacija.IdLok.ToString() + '|' + k.Lokacija.X.ToString() + '|' + k.Lokacija.Y.ToString() + '|' + k.Lokacija.Adresa.IdAdr.ToString() + '|' + k.Lokacija.Adresa.UlicaIBroj + '|' + k.Lokacija.Adresa.NaseljenoMjesto + '|' + k.Lokacija.Adresa.PozivniBroj + '|' + k.Automobil.IdVozaca.ToString() + '|' + k.Automobil.Godiste + '|' + k.Automobil.Registracija + '|' + k.Automobil.BrojVozila.ToString() + '|' + k.Automobil.TipAuta + '|' + k.Zauzet.ToString() + '|' + k.Zauzet.ToString();
+                    allString += '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.lokacija.IdLokacije.ToString() + '|' + k.lokacija.X.ToString() + '|' + k.lokacija.Y.ToString() + '|' + k.lokacija.adresa.IdAdrese.ToString() + '|' + k.lokacija.adresa.UlicaBroj + '|' + k.lokacija.adresa.NaseljenoMestoPBroj + '|' + k.automobil.VozacKorIme + '|' + k.automobil.Godiste + '|' + k.automobil.Registracija + '|' + k.automobil.BrojVozila.ToString() + '|' + k.automobil.TipAutomobila + '|' + k.slobodan.ToString();
                     lines[i] = allString;
 
                 }
             }
-            System.IO.File.WriteAllLines(@"C:\Users\Mijat\Downloads\WebTaxi-master ELENA V3\WebAPI\WebAPI\App_Data\Vozaci.txt", lines);
+            System.IO.File.WriteAllLines(path, lines);
 
         }
 
@@ -116,7 +118,7 @@ namespace WebAPI.Controllers
 
 
         // GET api/vozac/5
-        public Vozac Get(string ikorIme)
+        public Vozac Get(string korIme)
         {
             return Vozaci.vozaci[korIme];
         }

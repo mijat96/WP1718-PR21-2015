@@ -7,6 +7,7 @@ namespace WebAPI.Models
 {
     public class Lokacija
     {
+        public int IdLokacije { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
         public Adresa adresa;

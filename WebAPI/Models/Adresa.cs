@@ -7,6 +7,7 @@ namespace WebAPI.Models
 {
     public class Adresa
     {
+        public int IdAdrese { get; set; }
         public string UlicaBroj { get; set; }
 
         public string NaseljenoMestoPBroj { get; set; }

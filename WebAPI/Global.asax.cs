@@ -20,10 +20,17 @@ namespace WebAPI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Musterije users = new Musterije(@"C:\WebAPI\WP1718-PR21-2015\WebAPI\App_Data\Musterije.txt");
-            Dispeceri disp = new Dispeceri(@"C:\WebAPI\WP1718-PR21-2015\WebAPI\App_Data\Dispeceri.txt");
-            Vozaci drivers = new Vozaci(@"C:\WebAPI\WP1718-PR21-2015\WebAPI\App_Data\App_Data\Vozaci.txt");
-            Voznje rides = new Voznje(@"C:\WebAPI\WP1718-PR21-2015\WebAPI\App_Data\Voznje.txt");
+            string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/Musterije.txt");
+            Musterije users = new Musterije(path);
+
+            path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/Dispeceri.txt");
+            Dispeceri disp = new Dispeceri(path);
+
+            path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/Vozaci.txt");
+            Vozaci drivers = new Vozaci(path);
+
+            path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/Voznje.txt");
+            Voznje rides = new Voznje(path);
         }
     }
 }
