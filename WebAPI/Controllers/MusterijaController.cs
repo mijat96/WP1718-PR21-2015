@@ -41,5 +41,70 @@ namespace WebAPI.Controllers
             }
             stream.Close();
         }
+
+        public bool Put(int id, [FromBody]Musterija korisnik)
+        {
+            foreach (Musterija kor in Musterije.musterije.Values)
+            {
+                if (kor.KorisnickoIme == korisnik.KorisnickoIme)
+                {
+                    if (korisnik.KorisnickoIme == null)
+                    {
+                        korisnik.KorisnickoIme = kor.KorisnickoIme;
+                    }
+
+                    if (korisnik.Lozinka == null)
+                    {
+                        korisnik.Lozinka = kor.Lozinka;
+                    }
+
+                    if (korisnik.Ime == null)
+                    {
+                        korisnik.Ime = kor.Ime;
+                    }
+
+                    if (korisnik.Prezime == null)
+                    {
+                        korisnik.Prezime = kor.Prezime;
+                    }
+
+                    korisnik.Pol = kor.Pol;
+
+                    if (korisnik.JMBG == null)
+                    {
+                        korisnik.JMBG = kor.JMBG;
+                    }
+
+                    if (korisnik.Email == null)
+                    {
+                        korisnik.Email = kor.Email;
+                    }
+
+                    if (korisnik.KontaktTelefon == null)
+                    {
+                        korisnik.KontaktTelefon = kor.KontaktTelefon;
+                    }
+
+                    korisnik.Uloga = kor.Uloga;
+
+                    Musterije.musterije.Remove(kor.KorisnickoIme);
+                    Musterije.musterije.Add(korisnik.KorisnickoIme, korisnik);
+                    UpisTxt(korisnik);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Dictionary<string, Musterija> Get()
+        {
+            return Musterije.musterije;
+        }
+
+        // GET api/musterija/5
+        public Musterija Get(string korIme)
+        {
+            return Musterije.musterije[korIme];
+        }
     }
 }

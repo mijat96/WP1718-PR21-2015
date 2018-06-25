@@ -21,6 +21,9 @@ namespace WebAPI
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Musterije users = new Musterije(@"C:\WebAPI\WP1718-PR21-2015\WebAPI\App_Data\Musterije.txt");
+            Dispeceri disp = new Dispeceri(@"C:\WebAPI\WP1718-PR21-2015\WebAPI\App_Data\Dispeceri.txt");
+            Vozaci drivers = new Vozaci(@"C:\WebAPI\WP1718-PR21-2015\WebAPI\App_Data\App_Data\Vozaci.txt");
+            Voznje rides = new Voznje(@"C:\WebAPI\WP1718-PR21-2015\WebAPI\App_Data\Voznje.txt");
         }
     }
 }
