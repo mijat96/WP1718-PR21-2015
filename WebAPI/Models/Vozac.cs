@@ -2,25 +2,54 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using static WebAPI.Models.Enums;
 
 namespace WebAPI.Models
 {
-    public class Vozac : Korisnik
+    public class Vozac  : Korisnik
     {
-        public Lokacija lokacija { get; set; }
-        public Automobil automobil { get; set; }
-
-        public bool slobodan { get; set; }
-
         public Vozac() { }
+        public Lokacija Lokacija { get; set; }
+        public Automobil Automobil { get; set; }
+        public bool Zauzet { get; set; }
+        
 
-        public Vozac(string kIme, string lozinka, string ime, string prezime, EnumPol pol, string jmbg, string kontakt, string email, EnumUloga uloga, Lokacija lok, Automobil auto, bool slobodan) 
-                    : base(kIme, lozinka, ime, prezime, pol, jmbg, kontakt, email, uloga)
+
+        public Vozac(int i, string k, string l, string ime, string p, Pol po, string jmbg, string kont, string ema, Uloga ul,Lokacija lo,Automobil aut,bool zauzet,bool banovan)
         {
-            this.slobodan = slobodan;
-            this.lokacija = lok;
-            this.automobil = auto;
-        }
+            this.Id = i;
+            this.KorisnickoIme = k;
+            this.Lozinka = l;
+            this.Ime = ime;
+            this.Prezime = p;
+            if (po.Equals("M"))
+            {
+                this.Pol = Pol.M;
+            }
+            else
+            {
+                this.Pol = Pol.Z;
+            }
+            this.JMBG = jmbg;
+            this.KontaktTelefon = kont;
+            this.Email = ema;
 
+            if (ul.ToString().Equals("Musterija"))
+            {
+                this.Uloga = Uloga.Musterija;
+            }
+            else if (ul.ToString().Equals("Dispecer"))
+            {
+                this.Uloga = Uloga.Dispecer;
+            }
+            else
+            {
+                this.Uloga = Uloga.Vozac;
+            }
+            this.Lokacija = lo;
+            this.Automobil = aut;
+            this.Zauzet = zauzet;
+            this.Banovan = banovan;
+        }
     }
 }

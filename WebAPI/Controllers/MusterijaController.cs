@@ -11,7 +11,85 @@ namespace WebAPI.Controllers
 {
     public class MusterijaController : ApiController
     {
-        // POST api/post
+        //PUT api/musterija/5
+        public bool Put(int id, [FromBody]Musterija korisnik)
+        {
+            foreach (Musterija kor in Musterije.musterije.Values)
+            {
+                if (kor.Id == id)
+                {
+                    if(korisnik.KorisnickoIme==null)
+                    {
+                        korisnik.KorisnickoIme = kor.KorisnickoIme;
+                    }
+                    if (korisnik.Lozinka == null)
+                    {
+                        korisnik.Lozinka = kor.Lozinka;
+                    }
+                    if (korisnik.Ime == null)
+                    {
+                        korisnik.Ime = kor.Ime;
+                    }
+                    if (korisnik.Prezime == null)
+                    {
+                        korisnik.Prezime = kor.Prezime;
+                    }
+                    korisnik.Pol = kor.Pol;
+                    if (korisnik.JMBG == null)
+                    {
+                        korisnik.JMBG = kor.JMBG;
+                    }
+                    if (korisnik.Email == null)
+                    {
+                        korisnik.Email = kor.Email;
+                    }
+                    if (korisnik.KontaktTelefon == null)
+                    {
+                        korisnik.KontaktTelefon = kor.KontaktTelefon;
+                    }
+                    korisnik.Uloga = kor.Uloga;
+
+                    Musterije.musterije.Remove(kor.Id);
+                    Musterije.musterije.Add(korisnik.Id, korisnik);
+                    UpisIzmenaTxt(korisnik);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        private void UpisIzmenaTxt(Musterija k)
+        {
+            string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/Musterije.txt");
+            string[] lines = System.IO.File.ReadAllLines(path);
+            string allString = "";
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i].Contains(k.Id.ToString()))
+                {
+                    allString += k.Id.ToString() + '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.Banovan.ToString();
+                    lines[i] = allString;
+                }
+            }
+            System.IO.File.WriteAllLines(path, lines);
+
+        }
+
+
+        // GET api/musterija
+        public Dictionary<int, Musterija> Get()
+        {
+            return Musterije.musterije;
+        }
+
+        // GET api/musterija/5
+        public Musterija Get(int id)
+        {
+            return Musterije.musterije[id];
+        }
+
+        // POST api/musterija
         public bool Post([FromBody]Musterija korisnik)
         {
 
@@ -22,10 +100,27 @@ namespace WebAPI.Controllers
                     return false;
                 }
             }
+            foreach (Vozac kor in Vozaci.vozaci.Values)
+            {
+                if (kor.KorisnickoIme == korisnik.KorisnickoIme)
+                {
+                    return false;
+                }
+            }
 
-            Musterije.musterije = new Dictionary<string, Musterija>();
-            korisnik.Uloga = EnumUloga.MUSTERIJA;
-            Musterije.musterije.Add(korisnik.KorisnickoIme, korisnik);
+            foreach (Dispecer kor in Dispeceri.dispeceri.Values)
+            {
+                if (kor.KorisnickoIme == korisnik.KorisnickoIme)
+                {
+                    return false;
+                }
+            }
+
+            Musterije.musterije = new Dictionary<int, Musterija>();
+            SomeType s = new SomeType();
+            korisnik.Id = s.GetHashCode();
+            korisnik.Uloga = Enums.Uloga.Musterija;
+            Musterije.musterije.Add(korisnik.Id, korisnik);
             UpisTxt(korisnik);
             return true;
 
@@ -37,75 +132,27 @@ namespace WebAPI.Controllers
             FileStream stream = new FileStream(path, FileMode.Append);
             using (StreamWriter tw = new StreamWriter(stream))
             {
-                string upis = '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga;
+                string upis = k.Id.ToString() + '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.Banovan.ToString();
                 tw.WriteLine(upis);
             }
             stream.Close();
         }
 
-        public bool Put(int id, [FromBody]Musterija korisnik)
+        public class SomeType
         {
-            foreach (Musterija kor in Musterije.musterije.Values)
+            public override int GetHashCode()
             {
-                if (kor.KorisnickoIme == korisnik.KorisnickoIme)
-                {
-                    if (korisnik.KorisnickoIme == null)
-                    {
-                        korisnik.KorisnickoIme = kor.KorisnickoIme;
-                    }
-
-                    if (korisnik.Lozinka == null)
-                    {
-                        korisnik.Lozinka = kor.Lozinka;
-                    }
-
-                    if (korisnik.Ime == null)
-                    {
-                        korisnik.Ime = kor.Ime;
-                    }
-
-                    if (korisnik.Prezime == null)
-                    {
-                        korisnik.Prezime = kor.Prezime;
-                    }
-
-                    korisnik.Pol = kor.Pol;
-
-                    if (korisnik.JMBG == null)
-                    {
-                        korisnik.JMBG = kor.JMBG;
-                    }
-
-                    if (korisnik.Email == null)
-                    {
-                        korisnik.Email = kor.Email;
-                    }
-
-                    if (korisnik.KontaktTelefon == null)
-                    {
-                        korisnik.KontaktTelefon = kor.KontaktTelefon;
-                    }
-
-                    korisnik.Uloga = kor.Uloga;
-
-                    Musterije.musterije.Remove(kor.KorisnickoIme);
-                    Musterije.musterije.Add(korisnik.KorisnickoIme, korisnik);
-                    UpisTxt(korisnik);
-                    return true;
-                }
+                return base.GetHashCode();
             }
-            return false;
         }
 
-        public Dictionary<string, Musterija> Get()
+        public static int GetHashCode2()
         {
-            return Musterije.musterije;
+            return Int32.MaxValue.GetHashCode();
         }
 
-        // GET api/musterija/5
-        public Musterija Get(string korIme)
-        {
-            return Musterije.musterije[korIme];
-        }
+
     }
+
+
 }

@@ -2,28 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using static WebAPI.Models.Enums;
 namespace WebAPI.Models
 {
     public class Automobil
     {
-        public string VozacKorIme { get; set; }
+        public int IdVozaca { get; set; }
         public string Godiste { get; set; }
         public string Registracija { get; set; }
         public int BrojVozila { get; set; }
-        public EnumAutomobil TipAutomobila { get; set; }
+        public TipAutomobila TipAuta { get; set; }
 
         public Automobil() { }
-        public Automobil(string vozac, string godiste, string registracija, int broj, EnumAutomobil tip)
+        public Automobil(int idVozaca,string godiste,string registracija,int brvozila,TipAutomobila tip)
         {
-            this.VozacKorIme = vozac;
+            this.IdVozaca = idVozaca;
             this.Godiste = godiste;
             this.Registracija = registracija;
-            this.BrojVozila = broj;
-            if (tip.ToString().Equals("PUTNICKI"))
-                this.TipAutomobila = EnumAutomobil.PUTNICKI;
-            else
-                this.TipAutomobila = EnumAutomobil.KOMBI;
+            this.BrojVozila = brvozila;
+            this.TipAuta = tip;
+            
         }
     }
 }

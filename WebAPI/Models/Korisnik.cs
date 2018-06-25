@@ -2,51 +2,61 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using static WebAPI.Models.Enums;
 
 namespace WebAPI.Models
 {
     public class Korisnik
     {
+        public int Id { get; set; }
         public string KorisnickoIme { get; set; }
         public string Lozinka { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public EnumPol Pol { get; set; }
+        public Pol Pol { get; set; }
         public string JMBG { get; set; }
         public string KontaktTelefon { get; set; }
         public string Email { get; set; }
-        public EnumUloga Uloga { get; set; }
-        public List<Voznja> Voznje { get; set; }
+        public Uloga Uloga { get; set; }
+        public bool Banovan { get; set; }
 
-        public Korisnik()
+        
+        public Korisnik() { Banovan = false; }
+        public Korisnik(int i,string k, string l,string ime,string p,Pol po,string jmbg,string kont,string ema,Uloga ul)
         {
-            Voznje = new List<Voznja>();
-        }
-
-        public Korisnik(string kIme, string lozinka, string ime, string prezime, EnumPol pol, string jmbg, string kontakt, string email, EnumUloga uloga)
-        {
-            this.KorisnickoIme = kIme;
-            this.Lozinka = lozinka;
+            this.Id = i;
+            this.KorisnickoIme = k;
+            this.Lozinka = l;
             this.Ime = ime;
-            this.Prezime = prezime;
+            this.Prezime = p;
+            if (po.Equals("M"))
+            {
+                this.Pol = Pol.M;
+            }
+            else
+            {
+                this.Pol = Pol.Z;
+            }
             this.JMBG = jmbg;
-            this.KontaktTelefon = kontakt;
-            this.Email = email;
+            this.KontaktTelefon = kont;
+            this.Email = ema;
 
-            if (pol.Equals("MUSKO"))
-                this.Pol = EnumPol.MUSKO;
+            if (ul.ToString().Equals("Musterija"))
+            {
+                this.Uloga = Uloga.Musterija;
+            }
+            else if (ul.ToString().Equals("Dispecer"))
+            {
+                this.Uloga = Uloga.Dispecer;
+            }
             else
-                this.Pol = EnumPol.ZENSKO;           
+            {
+                this.Uloga = Uloga.Vozac;
+            }
 
 
-            if (uloga.ToString().Equals("MUSTERIJA"))
-                this.Uloga = EnumUloga.MUSTERIJA;
-            else if (uloga.ToString().Equals("DISPECXER"))
-                this.Uloga = EnumUloga.DISPECER;
-            else
-                this.Uloga = EnumUloga.VOZAC;
-
-            Voznje = new List<Voznja>();
         }
     }
+
+    
 }

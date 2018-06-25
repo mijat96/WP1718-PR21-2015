@@ -8,20 +8,21 @@ namespace WebAPI.Models
     public class Komentar
     {
         public string Opis { get; set; }
-        public DateTime DatumObjave { get; set; }
-        public string Korisnik { get; set; }
-        public int Voznja { get; set; }
-        public int Ocena { get; set; } //vrednost od 1 do 5, 0 vrednost se tumači tako kao da mušterija nije ocenila vožnju
+        public DateTime DTObjave { get; set; }
+        public string KorImeKorisnikKomentar { get; set; }
+        public int IdVoznjaKomentar { get; set; }
+        public int Ocena { get; set; }
 
         public Komentar() { }
-
-        public Komentar(string opis, DateTime datum, string korisnik, int idVoznja, int ocena)
+        public Komentar(string opis, DateTime datum, string korimekorisnika, int idvoznje, int Ocena)
         {
             this.Opis = opis;
-            this.DatumObjave = datum;
-            this.Korisnik = korisnik;
-            this.Voznja = idVoznja;
-            this.Ocena = ocena;
+            this.DTObjave = datum;
+            this.KorImeKorisnikKomentar = korimekorisnika;
+            this.IdVoznjaKomentar = idvoznje;
+            this.Ocena = Ocena;
         }
+             
+
     }
 }

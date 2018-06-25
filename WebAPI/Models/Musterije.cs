@@ -8,7 +8,7 @@ namespace WebAPI.Models
 {
     public class Musterije
     {
-        public static Dictionary<string, Musterija> musterije { get; set; } = new Dictionary<string, Musterija>();
+        public static Dictionary<int, Musterija> musterije { get; set; } = new Dictionary<int, Musterija>();
 
         public Musterije() { }
 
@@ -17,40 +17,39 @@ namespace WebAPI.Models
 
             FileStream stream = new FileStream(path, FileMode.Open);
             StreamReader sr = new StreamReader(stream);
-            EnumPol pol;
-            EnumUloga uloga;
+            Enums.Pol pol;
+            Enums.Uloga uloga;
             string line = "";
             while ((line = sr.ReadLine()) != null)
             {
                 string[] tokens = line.Split('|');
-                if (tokens[4].Equals("Musko"))
+                if (tokens[5].Equals("M"))
                 {
-                    pol = EnumPol.MUSKO;
+                    pol = Enums.Pol.M;
                 }
                 else
                 {
-                    pol = EnumPol.ZENSKO;
+                    pol = Enums.Pol.Z;
                 }
-                if (tokens[8].Equals("Musterija"))
+                if (tokens[9].Equals("Musterija"))
                 {
-                    uloga = EnumUloga.MUSTERIJA;
+                    uloga = Enums.Uloga.Musterija;
                 }
-                else if (tokens[8].Equals("Dispecer"))
+                else if (tokens[9].Equals("Dispecer"))
                 {
-                    uloga = EnumUloga.DISPECER;
+                    uloga = Enums.Uloga.Dispecer;
                 }
                 else
                 {
-                    uloga = EnumUloga.VOZAC;
+                    uloga = Enums.Uloga.Vozac;
                 }
 
-                //public Musterija(string kIme, string lozinka, string ime, string prezime, EnumPol pol, string jmbg, string kontakt, string email, EnumUloga uloga)
-                Musterija k = new Musterija(tokens[0], tokens[1], tokens[2], tokens[3], pol, tokens[6], tokens[7], tokens[8], uloga);
-                musterije.Add(k.KorisnickoIme, k);
+
+                Musterija k = new Musterija(Int32.Parse(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4], pol, tokens[6], tokens[7], tokens[8], uloga, bool.Parse(tokens[10]));
+                musterije.Add(k.Id, k);
             }
             sr.Close();
             stream.Close();
         }
-
     }
 }

@@ -12,16 +12,16 @@ namespace WebAPI.Controllers
     {
         public Korisnik Post([FromBody]string vrednost)
         {
-
+ 
             foreach (var k in Musterije.musterije.Values)
             {
-                if (k.KorisnickoIme == vrednost)
+                if(k.KorisnickoIme==vrednost)
                 {
                     return k;
                 }
             }
 
-            foreach (var d in Dispeceri.dispeceri.Values)
+            foreach(var d in Dispeceri.dispeceri.Values)
             {
                 if (d.KorisnickoIme == vrednost)
                 {

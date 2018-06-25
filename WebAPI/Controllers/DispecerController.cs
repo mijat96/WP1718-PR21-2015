@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,32 +11,34 @@ namespace WebAPI.Controllers
 {
     public class DispecerController : ApiController
     {
+        // PUT api/korisnik/5
+        
         public bool Put(int id, [FromBody]Dispecer korisnik)
         {
             foreach (Dispecer kor in Dispeceri.dispeceri.Values)
             {
-                if (kor.KorisnickoIme == korisnik.KorisnickoIme)
+                if (kor.Id == id)
                 {
-                    Dispeceri.dispeceri.Remove(kor.KorisnickoIme);
-                    Dispecer d = new Dispecer(korisnik.KorisnickoIme, korisnik.Lozinka, korisnik.Ime, korisnik.Prezime, korisnik.Pol, korisnik.JMBG, korisnik.KontaktTelefon, korisnik.Email, korisnik.Uloga);
-                    Dispeceri.dispeceri.Add(d.KorisnickoIme, d);
-                    UpisIzmenaDisp(korisnik);
+                    Dispeceri.dispeceri.Remove(kor.Id);
+                    Dispecer d = new Dispecer(korisnik.Id, korisnik.KorisnickoIme, korisnik.Lozinka, korisnik.Ime, korisnik.Prezime, korisnik.Pol, korisnik.JMBG, korisnik.KontaktTelefon, korisnik.Email, korisnik.Uloga);
+                    Dispeceri.dispeceri.Add(d.Id, d);
+                    UpisIzmenaDispTxt(korisnik);
                     return true;
-                }
+                 }
             }
             return false;
         }
 
-        private void UpisIzmenaDisp(Dispecer k)
+        private void UpisIzmenaDispTxt(Dispecer k)
         {
             string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/Dispeceri.txt");
             string[] lines = System.IO.File.ReadAllLines(path);
             string allString = "";
             for (int i = 0; i < lines.Length; i++)
             {
-                if (lines[i].Contains(k.KorisnickoIme))
+                if (lines[i].Contains(k.Id.ToString()))
                 {
-                    allString += '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga;
+                    allString += k.Id.ToString() + '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga;
                     lines[i] = allString;
                 }
             }

@@ -11,11 +11,12 @@ namespace WebAPI.Controllers
 {
     public class VozacController : ApiController
     {
+        // POST api/vozac
         public bool Post([FromBody]Vozac korisnik)
         {
-            if (Vozaci.vozaci == null)
+            if(Vozaci.vozaci==null)
             {
-                Vozaci.vozaci = new Dictionary<string, Vozac>();
+                Vozaci.vozaci = new Dictionary<int, Vozac>(); 
             }
 
 
@@ -33,7 +34,7 @@ namespace WebAPI.Controllers
                     return false;
                 }
             }
-
+            
             foreach (Dispecer kor in Dispeceri.dispeceri.Values)
             {
                 if (kor.KorisnickoIme == korisnik.KorisnickoIme)
@@ -42,10 +43,13 @@ namespace WebAPI.Controllers
                 }
             }
 
-            korisnik.Uloga = EnumUloga.VOZAC;
-            korisnik.automobil.VozacKorIme = korisnik.KorisnickoIme;
-            korisnik.slobodan = false;
-            Vozaci.vozaci.Add(korisnik.KorisnickoIme, korisnik);
+            
+            SomeType s = new SomeType();
+            korisnik.Id = s.GetHashCode();
+            korisnik.Uloga = Enums.Uloga.Vozac;
+            korisnik.Automobil.IdVozaca = korisnik.Id;
+            korisnik.Zauzet = false;
+            Vozaci.vozaci.Add(korisnik.Id, korisnik);
             UpisTxt(korisnik);
             return true;
 
@@ -57,7 +61,7 @@ namespace WebAPI.Controllers
             FileStream stream = new FileStream(path, FileMode.Append);
             using (StreamWriter tw = new StreamWriter(stream))
             {
-                string upis = '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.lokacija.IdLokacije.ToString() + '|' + k.lokacija.X.ToString() + '|' + k.lokacija.Y.ToString() + '|' + k.lokacija.adresa.IdAdrese.ToString() + '|' + k.lokacija.adresa.UlicaBroj + '|' + k.lokacija.adresa.NaseljenoMestoPBroj + '|' + k.automobil.VozacKorIme + '|' + k.automobil.Godiste + '|' + k.automobil.Registracija + '|' + k.automobil.BrojVozila.ToString() + '|' + k.automobil.TipAutomobila + '|' + k.slobodan.ToString();
+                string upis = k.Id.ToString() + '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga +'|' + k.Lokacija.IdLok.ToString() + '|' + k.Lokacija.X.ToString() + '|' + k.Lokacija.Y.ToString() + '|' + k.Lokacija.Adresa.IdAdr.ToString() + '|' + k.Lokacija.Adresa.UlicaIBroj + '|' + k.Lokacija.Adresa.NaseljenoMesto + '|' + k.Lokacija.Adresa.PozivniBroj + '|' + k.Automobil.IdVozaca.ToString() + '|' + k.Automobil.Godiste + '|' + k.Automobil.Registracija + '|' + k.Automobil.BrojVozila.ToString() + '|' + k.Automobil.TipAuta + '|' + k.Zauzet.ToString() + '|' + k.Banovan.ToString();
                 tw.WriteLine(upis);
             }
             stream.Close();
@@ -76,32 +80,35 @@ namespace WebAPI.Controllers
             return Int32.MaxValue.GetHashCode();
         }
 
+
+
+        
         // PUT api/vozac/5
         public bool Put(int id, [FromBody]Vozac korisnik)
         {
-            foreach (Vozac kor in Vozaci.vozaci.Values)
-            {
-                if (kor.KorisnickoIme == korisnik.KorisnickoIme)
+                foreach (Vozac kor in Vozaci.vozaci.Values)
                 {
-                    Vozaci.vozaci.Remove(kor.KorisnickoIme);
-                    Vozaci.vozaci.Add(korisnik.KorisnickoIme, korisnik);
-                    UpisIzmjenaTxt(korisnik);
-                    return true;
+                    if (kor.Id == id)
+                    {
+                        Vozaci.vozaci.Remove(kor.Id);
+                        Vozaci.vozaci.Add(korisnik.Id, korisnik);
+                        UpisIzmenaTxt(korisnik);
+                        return true;
+                    }
                 }
-            }
             return false;
         }
 
-        private void UpisIzmjenaTxt(Vozac k)
+        private void UpisIzmenaTxt(Vozac k)
         {
             string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/Vozaci.txt");
             string[] lines = System.IO.File.ReadAllLines(path);
             string allString = "";
             for (int i = 0; i < lines.Length; i++)
             {
-                if (lines[i].Contains(k.KorisnickoIme))
+                if (lines[i].Contains(k.Id.ToString()))
                 {
-                    allString += '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.lokacija.IdLokacije.ToString() + '|' + k.lokacija.X.ToString() + '|' + k.lokacija.Y.ToString() + '|' + k.lokacija.adresa.IdAdrese.ToString() + '|' + k.lokacija.adresa.UlicaBroj + '|' + k.lokacija.adresa.NaseljenoMestoPBroj + '|' + k.automobil.VozacKorIme + '|' + k.automobil.Godiste + '|' + k.automobil.Registracija + '|' + k.automobil.BrojVozila.ToString() + '|' + k.automobil.TipAutomobila + '|' + k.slobodan.ToString();
+                    allString += k.Id.ToString() + '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga  + '|' + k.Lokacija.IdLok.ToString() + '|' + k.Lokacija.X.ToString() + '|' + k.Lokacija.Y.ToString() + '|' + k.Lokacija.Adresa.IdAdr.ToString() + '|' + k.Lokacija.Adresa.UlicaIBroj + '|' + k.Lokacija.Adresa.NaseljenoMesto + '|' + k.Lokacija.Adresa.PozivniBroj + '|' + k.Automobil.IdVozaca.ToString() + '|' + k.Automobil.Godiste + '|' + k.Automobil.Registracija + '|' + k.Automobil.BrojVozila.ToString() + '|' + k.Automobil.TipAuta + '|' + k.Zauzet.ToString() + '|' + k.Zauzet.ToString();
                     lines[i] = allString;
 
                 }
@@ -111,16 +118,16 @@ namespace WebAPI.Controllers
         }
 
         // GET api/vozac
-        public Dictionary<string, Vozac> Get()
+        public Dictionary<int, Vozac> Get()
         {
             return Vozaci.vozaci;
         }
 
 
         // GET api/vozac/5
-        public Vozac Get(string korIme)
+        public Vozac Get(int id)
         {
-            return Vozaci.vozaci[korIme];
+            return Vozaci.vozaci[id];
         }
     }
 }

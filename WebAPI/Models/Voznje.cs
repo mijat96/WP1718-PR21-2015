@@ -18,8 +18,8 @@ namespace WebAPI.Models
             FileStream stream = new FileStream(path, FileMode.Open);
             StreamReader sr = new StreamReader(stream);
 
-            EnumStatus status;
-            EnumAutomobil tip;
+            Enums.StatusVoznje status;
+            Enums.TipAutomobila tip;
             Lokacija pomLokDolazak;
             Lokacija pomLokOdrediste;
             Komentar pomKomentar;
@@ -35,50 +35,50 @@ namespace WebAPI.Models
 
                 if (tokens[9].Equals("Kombi"))
                 {
-                    tip = EnumAutomobil.KOMBI;
+                    tip = Enums.TipAutomobila.Kombi;
                 }
                 else
                 {
-                    tip = EnumAutomobil.PUTNICKI;
+                    tip = Enums.TipAutomobila.Putnicki;
                 }
 
                 if (tokens[26].Equals("Formirana"))
                 {
-                    status = EnumStatus.FORMIRANA;
+                    status = Enums.StatusVoznje.Formirana;
                 }
                 else if (tokens[26].Equals("Kreirana"))
                 {
-                    status = EnumStatus.KREIRANA;
+                    status = Enums.StatusVoznje.Kreirana;
                 }
                 else if (tokens[26].Equals("Neuspesna"))
                 {
-                    status = EnumStatus.NEUSPESNA;
+                    status = Enums.StatusVoznje.Neuspesna;
                 }
                 else if (tokens[26].Equals("Obradjena"))
                 {
-                    status = EnumStatus.OBRADJENA;
+                    status = Enums.StatusVoznje.Obradjena;
                 }
                 else if (tokens[26].Equals("Otkazana"))
                 {
-                    status = EnumStatus.OTKAZANA;
+                    status = Enums.StatusVoznje.Otkazana;
                 }
                 else if (tokens[26].Equals("Prihvacena"))
                 {
-                    status = EnumStatus.PRIHVACENA;
+                    status = Enums.StatusVoznje.Prihvacena;
                 }
                 else if (tokens[26].Equals("Uspesna"))
                 {
-                    status = EnumStatus.USPESNA;
+                    status = Enums.StatusVoznje.Uspesna;
                 }
                 else
                 {
-                    status = EnumStatus.TRAJE;
+                    status = Enums.StatusVoznje.Utoku;
                 }
 
-                pomAdresa = new Adresa(tokens[7], tokens[8]);
-                pomLokDolazak = new Lokacija(Double.Parse(tokens[3]), Double.Parse(tokens[4]));
-                pomAdresa1 = new Adresa(tokens[15], tokens[16]);
-                pomLokOdrediste = new Lokacija(Double.Parse(tokens[12]), Double.Parse(tokens[13]));
+                pomAdresa = new Adresa(Int32.Parse(tokens[5]), tokens[6], tokens[7], tokens[8]);
+                pomLokDolazak = new Lokacija(Int32.Parse(tokens[2]), Double.Parse(tokens[3]), Double.Parse(tokens[4]), pomAdresa);
+                pomAdresa1 = new Adresa(Int32.Parse(tokens[14]), tokens[15], tokens[16], tokens[17]);
+                pomLokOdrediste = new Lokacija(Int32.Parse(tokens[11]), Double.Parse(tokens[12]), Double.Parse(tokens[13]), pomAdresa1);
                 pomKomentar = new Komentar(tokens[21], DateTime.Parse(tokens[22]), tokens[23], Int32.Parse(tokens[24]), Int32.Parse(tokens[25]));
                 Voznja v = new Voznja(Int32.Parse(tokens[0]), DateTime.Parse(tokens[1]), pomLokDolazak, tip, tokens[10], pomLokOdrediste, tokens[18], Double.Parse(tokens[19]), tokens[20], pomKomentar, status);
                 voznje.Add(v.IdVoznje, v);

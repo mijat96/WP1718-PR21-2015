@@ -7,17 +7,19 @@ namespace WebAPI.Models
 {
     public class Adresa
     {
-        public int IdAdrese { get; set; }
-        public string UlicaBroj { get; set; }
-
-        public string NaseljenoMestoPBroj { get; set; }
+        public int IdAdr { get; set; }
+        public string UlicaIBroj { get; set; }
+        public string NaseljenoMesto { get; set; }
+        public string PozivniBroj { get; set; }
 
         public Adresa() { }
-        public Adresa(string ulicaBroj, string naseljenoMestoPBroj)
-        {
-            this.UlicaBroj = ulicaBroj;
-            this.NaseljenoMestoPBroj = naseljenoMestoPBroj;
-        }
 
-}
+        public Adresa(int idAdr,string ulicabroj,string naseljenomesto,string pozivnibroj)
+        {
+            this.IdAdr = idAdr;
+            this.UlicaIBroj = ulicabroj;
+            this.NaseljenoMesto = naseljenomesto;
+            this.PozivniBroj = pozivnibroj;
+        }
+    }
 }

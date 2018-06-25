@@ -1,0 +1,4 @@
+1234234|Maja|taxi1|Marijana|Lazic|Z| 1204997345679|0642455|maja@gmail.com|Dispecer
+1234634|Markooo|taxi2|Marko|Mirkovic|M| 124567744677|0644363|marko@gmail.com|Dispecer
+1532684|Milos|taxi4|Milos|Milosevic|M| 124567634677|0645363|milos@gmail.com|Dispecer
+1512684|Goca|taxi5|Gordana|Popovic|Z| 124567635677|0641363|goca@gmail.com|Dispecer

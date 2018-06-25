@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-yellow.css">
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("p").click(function () {
+                alert($(this).text());
+            });
+
+
+            $("#prijava").click(function () {
+                let korisnik = {
+                    KorisnickoIme: `${$('#korIme').val()}`,
+                    Lozinka: `${$('#korPass').val()}`,
+                };
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/Login',
+                    data: JSON.stringify(korisnik),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data) {
+                            alert('Uspesno ulogovan');
+                            localStorage.setItem("logovan", korisnik.KorisnickoIme);
+                            $(location).attr('href', 'HtmlPage1.html');
+                        } else {
+                            alert('Niste registrovani');
+                        }
+                    },
+                })
+            });
+
+            $("#registracija").click(function () {
+                let korisnik = {
+                    KorisnickoIme: `${$('#korImeReg').val()}`,
+                    Lozinka: `${$('#korPassReg').val()}`,
+                    Ime: `${$('#ime').val()}`,
+                    Prezime: `${$('#prezime').val()}`,
+                    Pol: `${$('#pol').val()}`,
+                    JMBG: ` ${$('#jmbg').val()}`,
+                    Email: `${$('#email').val()}`,
+                    KontaktTelefon: `${$('#brTelefona').val()}`,
+                };
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/Musterija',
+                    data: JSON.stringify(korisnik),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data) {
+                            alert('Uspesno registovan');
+                            $(location).attr('href', 'pocetna.html');
+                        } else {
+                            alert('Vec je registrovan korisnik sa tim korisnickim imenom.');
+                        }
+                    },
+                })
+            });
+        });
+
+
+    </script>
+    <style>
+
+    body {
+        background-image: url("taxi.jpg"); 
+        background-repeat : no-repeat;
+        background-position: inherit;
+        background-size: cover;
+        
+        }
+
+     table,h2,button {
+            margin-left: 130px;  
+         }
+
+        input[type="text"], input[type="email"], select, input[type="password"], textarea {
+            background-color: transparent;
+            font-weight:bold;
+                     
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="w3-card-4">
+        <div class="w3-container w3-theme w3-card">
+            <h1><b>Dobro dosli u TAXI</b></h1>
+     </div>
+     </div>
+     
+
+        <h2><b>Login</b></h2>
+
+
+        <table border=1>
+            <tr>
+                <td><b>Korisnicko ime</b></td>
+                <td><input id="korIme" type="text" name="KorisnickoIme" /></td>
+            </tr>
+            <tr>
+                <td><b>Lozinka</b></td>
+                <td><input id="korPass" type="password" name="Lozinka" /></td>
+            </tr>
+        </table>
+        <button id="prijava" type="button"><b>Prijavi se</b></button>
+
+
+
+        <h2><b>Registration</b></h2>
+
+
+        <table border=1>
+            <tr>
+                <td><b>Korisnicko ime</b></td>
+                <td><input id="korImeReg" type="text" name="KorisnickoIme" /></td>
+            </tr>
+            <tr>
+                <td><b>Lozinka</b></td>
+                <td><input id="korPassReg" type="password" name="Lozinka" /></td>
+            </tr>
+
+            <tr>
+                <td><b>Ime</b></td>
+                <td><input id="ime" type="text" name="Ime" /></td>
+            </tr>
+
+            <tr>
+                <td><b>Prezime</b></td>
+                <td><input id="prezime" type="text" name="Prezime" /></td>
+            </tr>
+
+
+            <tr>
+                <td><b>JMBG</b></td>
+                <td><input id="jmbg" type="text" name="JMBG" /></td>
+            </tr>
+
+            <tr>
+                <td><b>Pol</b></td>
+                <td>
+                    <select name="Pol" id="pol">
+                        <option>
+                            Z
+                        </option>
+                        <option>
+                            M
+                        </option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td><b>Broj telefona</b></td>
+                <td><input id="brTelefona" type="text" name="KontaktTelefon" /></td>
+            </tr>
+
+            <tr>
+                <td><b>Email adresa</b></td>
+                <td><input id="email" type="email" name="Email" /></td>
+            </tr>
+
+        </table>
+        <button id="registracija" type="button"><b>Registruj se</b></button>
+
+
+</body>
+</html>

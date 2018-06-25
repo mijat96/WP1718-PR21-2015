@@ -10,12 +10,11 @@ namespace WebAPI.Controllers
 {
     public class DefaultController : ApiController
     {
-        //svaki put kad se pokrene vratice se index stranica, pokretanje pocetne stranice
-        [HttpGet, Route("")] //
+        [HttpGet, Route("")]
         public RedirectResult Index()
         {
-            var requestUri = Request.RequestUri;    //
-            return Redirect(requestUri.AbsoluteUri + "LogovanjeRegistracija.html");
+            var requestUri = Request.RequestUri;
+            return Redirect(requestUri.AbsoluteUri + "pocetna.html");
         }
     }
 }

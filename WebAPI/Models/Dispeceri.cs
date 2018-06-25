@@ -8,7 +8,7 @@ namespace WebAPI.Models
 {
     public class Dispeceri
     {
-        public static Dictionary<string, Dispecer> dispeceri { get; set; } = new Dictionary<string, Dispecer>();
+        public static Dictionary<int, Dispecer> dispeceri { get; set; } = new Dictionary<int, Dispecer>();
 
         public Dispeceri() { }
 
@@ -18,27 +18,36 @@ namespace WebAPI.Models
 
             FileStream stream = new FileStream(path, FileMode.Open);
             StreamReader sr = new StreamReader(stream);
-            EnumPol pol;
-            EnumUloga uloga;
-
+            Enums.Pol pol;
+            Enums.Uloga uloga;
+            
             string line = "";
             while ((line = sr.ReadLine()) != null)
             {
                 string[] tokens = line.Split('|');
-
-                if (tokens[4].Equals("Musko"))
+                
+                if (tokens[5].Equals("M"))
                 {
-                    pol = EnumPol.MUSKO;
+                    pol = Enums.Pol.M;
                 }
                 else
                 {
-                    pol = EnumPol.ZENSKO;
+                    pol = Enums.Pol.Z;
                 }
-
-                uloga = EnumUloga.DISPECER;
-                
-                Dispecer d = new Dispecer(tokens[0], tokens[1], tokens[2], tokens[3], pol, tokens[5], tokens[6], tokens[7], uloga);
-                dispeceri.Add(d.KorisnickoIme, d);
+                if (tokens[9].Equals("Musterija"))
+                {
+                    uloga = Enums.Uloga.Musterija;
+                }
+                else if (tokens[9].Equals("Dispecer"))
+                {
+                    uloga = Enums.Uloga.Dispecer;
+                }
+                else
+                {
+                    uloga = Enums.Uloga.Vozac;
+                }
+                Dispecer d = new Dispecer(Int32.Parse(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4], pol, tokens[6], tokens[7], tokens[8], uloga);
+                dispeceri.Add(d.Id, d);
             }
             sr.Close();
             stream.Close();
