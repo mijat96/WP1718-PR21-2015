@@ -17,13 +17,7 @@ namespace WebAPI.Controllers
 
             if (Voznje.voznje != null)
             {
-                //foreach (Voznja kor in Voznje.voznje.Values)
-                //{
-                //    if (kor.Dolazak.Adresa.UlicaIBroj == voznja.Dolazak.Adresa.UlicaIBroj)
-                //    {
-                //        return false;
-                //    }
-                //}
+                
                 SomeType s = new SomeType();
                 SomeType s1 = new SomeType();
                 SomeType s2 = new SomeType();
@@ -47,7 +41,7 @@ namespace WebAPI.Controllers
                         }
                     }
                 }
-                else  //nikad nece uci jer uvijek dispecer ili musterija kreiraju/formiraju voznju
+                else  
                 {
                     voznja.StatusVoznje = Enums.StatusVoznje.Prihvacena;
                 }

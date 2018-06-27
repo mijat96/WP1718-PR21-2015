@@ -1,1 +1,2 @@
-45326036|Rade|kornjaca|Radenko|Kornjaca|M| 5648213|0645552231|kornjaca@gmail.com|Vozac|0|45,2670974504598|19,8108581542969|0|Облачића Рада 8| Нови Сад||45326036|81|NS-06-II|23|Kombi|False|False
+38972574|torbica|drago|Dragan|Torbica|M| 15648|06458613|drago@gmail.com|Vozac|0|44,8138526489537|20,3560546875|0|Belfortska 30| Beograd||38972574|89|15618|12|Putnicki|False|False
+10508147|zika|vinjak|Zivan|Radosavljevic|M| 1351894|0613253|rakija@gmail.com|Vozac|0|44,4173901606798|21,9491386062527|0|33| Majdanpek||10508147|96|063416|123|Kombi|False|False

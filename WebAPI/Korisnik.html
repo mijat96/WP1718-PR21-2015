@@ -882,7 +882,7 @@
 
                 $.get("/api/Voznja", function (data, status) {
                     let tableOfProducts = "<table border='1'>";
-                    tableOfProducts += `<tr><th>Mušterija vožnje</th><th>Dat. porudž.</th><th>Ulica i br. dolaska</th><th>Mjesto dol.</th><th>Status vož.</th><th>Opis kom.</th><th>Ocjena kom.</th><th>Dat. obj. kom. vož.</th><th> </th><th> </th></tr>`;
+                    tableOfProducts += `<tr><th>Mušterija vožnje</th><th>Dat. porudž.</th><th>Ulica i br. dolaska</th><th>Mjesto dol.</th><th>Status vož.</th><th>Opis kom.</th><th>Ocena kom.</th><th>Dat. obj. kom. vož.</th><th> </th><th> </th></tr>`;
                     for (voznja in data) {
                         if (dataP.KorisnickoIme == data[voznja].MusterijaVoznja) {
                             tableOfProducts += `<tr><td>${data[voznja].MusterijaVoznja}</td><td>${data[voznja].DTPorudzbine}</td><td>${data[voznja].Dolazak.Adresa.UlicaIBroj}</td><td>${data[voznja].Dolazak.Adresa.NaseljenoMjesto}</td>`;
@@ -1003,22 +1003,22 @@
                 $("#IzmjenaKorisnik").hide();
                 $("#PrikazKorisnik").hide();
                 $.get("/api/Voznja", function (data, status) {
-                    let ocjene = [];
+                    let ocene = [];
                     for (voznja in data) {
                         if (dataP.KorisnickoIme == data[voznja].MusterijaVoznja) {
-                            ocjene.push(data[voznja].Komentar.Ocjena)
+                            ocene.push(data[voznja].Komentar.Ocjena)
                         }
                     }
-                    ocjene.sort(function (a, b) {
+                    ocene.sort(function (a, b) {
                         return b - a;
                     });
 
                     let tableOfProducts = "<table border='1'>";
                     tableOfProducts += `<tr><th>Mušterija vožnje</th><th>Dat. porudž.</th><th>Ulica i br. dolaska</th><th>Mjesto dol.</th><th>Pozivni br. dol.</th><th>Status vož.</th><th>Opis kom.</th><th>Ocjena kom.</th><th>Dat. obj. kom. vož.</th><th> </th><th> </th></tr>`;
-                    for (o in ocjene) {
+                    for (o in ocene) {
                         for (voznja in data) {
                             if (dataP.KorisnickoIme == data[voznja].MusterijaVoznja) {
-                                if (ocjene[o] == data[voznja].Komentar.Ocjena) {
+                                if (ocene[o] == data[voznja].Komentar.Ocjena) {
                                     tableOfProducts += `<tr><td>${data[voznja].MusterijaVoznja}</td><td>${data[voznja].DTPorudzbine}</td><td>${data[voznja].Dolazak.Adresa.UlicaIBroj}</td><td>${data[voznja].Dolazak.Adresa.NaseljenoMjesto}</td><td>${data[voznja].Dolazak.Adresa.PozivniBroj}</td>`;
                                     if (data[voznja].StatusVoznje == 0) {
                                         tableOfProducts += '<td>Kreirana</td>';
@@ -2232,7 +2232,7 @@
         <button id="prikaziVoznjeDisp" type="button"><b>Prikazi voznje dispecera</b></button>
         <button id="prikaziVoznjeSve" type="button"><b>Prikazi sve voznje</b></button>
         <button id="prikaziKorisnik1" type="button"><b>Prikazi podatke</b></button>
-        <button id="izmjeniKorisnik1" type="button"><b>Izmjeni podatke</b></button>
+        <button id="izmjeniKorisnik1" type="button"><b>Izmeni podatke</b></button>
         <button id="dodajVozaca" type="button"><b> Dodaj vozaca </b></button>
         <button id="dodajVoznjuDisp" type="button"><b>Naruci voznju</b></button>
         <button id="prikaziMusterijeBan" type="button"><b>Prikazi musterije</b></button>
@@ -2248,7 +2248,7 @@
         <div id="PrikazKorisnik1"></div>
         <div id="IzmjenaKorisnik1">
             <div id="IzmjenaShow1"></div>
-            <button id="potvrdiIzmjenu1" type="button"><b>Izmjeni podatke</b></button>
+            <button id="potvrdiIzmjenu1" type="button"><b>Izmeni podatke</b></button>
         </div>
         <div id="DodavanjeVozaca">
             <table border=1>
@@ -2347,7 +2347,7 @@
     <div id="divVozac">
         <p><b>Wecome driver!</b></p>
         <button id="prikaziKorisnik2" type="button"><b>Prikazi podatke</b></button>
-        <button id="izmjeniKorisnik2" type="button"><b>Izmjeni podatke</b></button>
+        <button id="izmjeniKorisnik2" type="button"><b>Izmeni podatke</b></button>
         <button id="prikaziVoznjeVozac" type="button"><b>Prikazi voznje na kojima sam</b></button>
         <button id="prikaziKreiraneVoznjeVozac" type="button"><b>Prikazi voznje bez vozaca</b></button>
 
@@ -2367,7 +2367,7 @@
         <div id="IzmjenaKorisnik2">
             <div id="IzmjenaShow2">
             </div>
-            <button id="potvrdiIzmjenu2" type="button"><b>Izmjeni podatke</b></button>
+            <button id="potvrdiIzmjenu2" type="button"><b>Izmeni podatke</b></button>
         </div>
     </div>
 

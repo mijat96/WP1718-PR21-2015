@@ -14,28 +14,35 @@
 
 
             $("#prijava").click(function () {
-                let korisnik = {
-                    KorisnickoIme: `${$('#korIme').val()}`,
-                    Lozinka: `${$('#korPass').val()}`,
-                };
+                let k1 = document.getElementById("korIme");
+                let k2 = document.getElementById("korPass");
+                if (!k1.checkValidity() || !k2.checkValidity()) {
+                    alert("Molimo unesite sva polja.");
+                } else {
+
+                    let korisnik = {
+                        KorisnickoIme: `${$('#korIme').val()}`,
+                        Lozinka: `${$('#korPass').val()}`,
+                    };
 
 
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/Login',
-                    data: JSON.stringify(korisnik),
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data) {
-                            alert('Uspesno ulogovan');
-                            localStorage.setItem("logovan", korisnik.KorisnickoIme);
-                            $(location).attr('href', 'HtmlPage1.html');
-                        } else {
-                            alert('Niste registrovani');
-                        }
-                    },
-                })
+                    $.ajax({
+                        type: 'POST',
+                        url: '/api/Login',
+                        data: JSON.stringify(korisnik),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data) {
+                                alert('Uspesno ulogovan');
+                                localStorage.setItem("logovan", korisnik.KorisnickoIme);
+                                $(location).attr('href', 'HtmlPage1.html');
+                            } else {
+                                alert('Niste registrovani');
+                            }
+                        },
+                    })
+                }
             });
 
             $("#registracija").click(function () {

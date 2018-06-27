@@ -46,7 +46,6 @@ D:\ftn\3. Treca godina\Veb programiranje\Vezbe\WebAPI pocetni\WebAPI\WebAPI\obj\
 D:\ftn\3. Treca godina\Veb programiranje\Vezbe\WebAPI pocetni\WebAPI\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 D:\ftn\3. Treca godina\Veb programiranje\Vezbe\WebAPI pocetni\WebAPI\WebAPI\obj\Debug\WebAPI.dll
 D:\ftn\3. Treca godina\Veb programiranje\Vezbe\WebAPI pocetni\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
-C:\WebAPI\WP1718-PR21-2015\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache
 C:\WebAPI\WP1718-PR21-2015\WebAPI\obj\Debug\WebAPI.csproj.CoreCompileInputs.cache
 C:\WebAPI\WP1718-PR21-2015\WebAPI\obj\Debug\WebAPI.dll
 C:\WebAPI\WP1718-PR21-2015\WebAPI\obj\Debug\WebAPI.pdb
@@ -94,3 +93,4 @@ C:\WebAPI\WP1718-PR21-2015\WebAPI\bin\System.Web.WebPages.Deployment.xml
 C:\WebAPI\WP1718-PR21-2015\WebAPI\bin\System.Web.WebPages.Razor.xml
 C:\WebAPI\WP1718-PR21-2015\WebAPI\bin\Antlr3.Runtime.pdb
 C:\WebAPI\WP1718-PR21-2015\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
+C:\WebAPI\WP1718-PR21-2015\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache

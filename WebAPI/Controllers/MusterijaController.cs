@@ -68,7 +68,7 @@ namespace WebAPI.Controllers
             {
                 if (lines[i].Contains(k.Id.ToString()))
                 {
-                    allString += k.Id.ToString() + '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.Banovan.ToString();
+                    allString += '|' + k.Id.ToString() + '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.Banovan.ToString();
                     lines[i] = allString;
                 }
             }
@@ -132,7 +132,7 @@ namespace WebAPI.Controllers
             FileStream stream = new FileStream(path, FileMode.Append);
             using (StreamWriter tw = new StreamWriter(stream))
             {
-                string upis = k.Id.ToString() + '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.Banovan.ToString();
+                string upis =  k.Id.ToString() + '|' + k.KorisnickoIme + '|' + k.Lozinka + '|' + k.Ime + '|' + k.Prezime + '|' + k.Pol + '|' + k.JMBG + '|' + k.KontaktTelefon + '|' + k.Email + '|' + k.Uloga + '|' + k.Banovan.ToString();
                 tw.WriteLine(upis);
             }
             stream.Close();

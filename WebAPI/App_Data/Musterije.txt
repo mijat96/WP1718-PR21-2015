@@ -1,1 +1,2 @@
-59045719|Mijat|m|Marko|Mijatovic|M| 290499634324|043543|marko@gmail.com|Musterija|True31144173|Zorz|cvare|Djordje|Cvarkov|M| 264590|0604598763|pejiceviS@hotmail.com|Musterija|False
+8462621|drago|b|Dragan|Torbica|M| 546|0659986|torbica@gmail.com|Musterija|False
+28915924|djoka|zorz|Djordje|Cvarkov|M| 1568496|06459163|pilad@gmail.com|Musterija|False

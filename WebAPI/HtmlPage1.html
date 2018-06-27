@@ -392,11 +392,11 @@
                     dataType: 'json',
                     success: function (data) {
                         if (data) {
-                            alert('Uspesno izmjenjena musterija');
+                            alert('Uspesno izmenjena musterija');
                             localStorage.setItem("logovan", korisnik.KorisnickoIme);
                             $(location).attr('href', 'HtmlPage1.html');
                         } else {
-                            alert('Ne postoji musterija koju zelite da mijenjate');
+                            alert('Ne postoji musterija koju zelite da menjate');
                         }
                     },
                 })
@@ -426,11 +426,11 @@
                     dataType: 'json',
                     success: function (data) {
                         if (data) {
-                            alert('Uspesno izmjenjen dispecer');
+                            alert('Uspesno izmenjen dispecer');
                             localStorage.setItem("logovan", korisnik.KorisnickoIme);
                             $(location).attr('href', 'HtmlPage1.html');
                         } else {
-                            alert('Ne postoji dispecer kojeg zelite da mijenjate');
+                            alert('Ne postoji dispecer kojeg zelite da menjate');
                         }
                     },
                 })
@@ -487,11 +487,11 @@
                     dataType: 'json',
                     success: function (data) {
                         if (data) {
-                            alert('Uspesno izmjenjen vozac');
+                            alert('Uspesno izmenjen vozac');
                             localStorage.setItem("logovan", korisnik.KorisnickoIme);
                             $(location).attr('href', 'HtmlPage1.html');
                         } else {
-                            alert('Ne postoji vozac kojeg zelite da mijenjate');
+                            alert('Ne postoji vozac kojeg zelite da menjate');
                         }
                     },
                 })
@@ -541,11 +541,11 @@
                     dataType: 'json',
                     success: function (data) {
                         if (data) {
-                            alert('Uspesno izmjenjena voznja');
+                            alert('Uspesno izmenjena voznja');
                             localStorage.setItem("voznjaIzmena", id1);
                             $(location).attr('href', 'HtmlPage1.html');
                         } else {
-                            alert('Ne postoji voznja koju zelite da mijenjate');
+                            alert('Ne postoji voznja koju zelite da menjate');
                         }
                     },
                 })
@@ -562,7 +562,7 @@
                 let id2 = localStorage.getItem("voznjaOtkaz");
                 let komentarVoznja = {
                     Opis: `${$('#opis').val()}`,
-                    DTObjave: dt.toLocaleString(), //d.toLocaleString()
+                    DTObjave: dt.toLocaleString(), 
                     Ocena: 0,
                     KorImeKorisnikKomentar: dataP.KorisnickoIme,
                     IdVoznjaKomentar: id2,
@@ -619,11 +619,11 @@
                 $("#IzmenaKorisnik1").hide();
                 $("#PrikazKorisnik1").hide();
                 $("#map").show();
-                let dijelovi = fulAdresa.split(",");
-                let x = dijelovi[0];
-                let y = dijelovi[1];
-                let ulicaIbroj = dijelovi[2];
-                let grad = dijelovi[3]; //sa zipom
+                let dielovi = fulAdresa.split(",");
+                let x = dielovi[0];
+                let y = dielovi[1];
+                let ulicaIbroj = dielovi[2];
+                let grad = dielovi[3]; //sa zipom
 
                 let adresa = {
                     IdAdr: "",
@@ -669,7 +669,7 @@
                     dataType: 'json',
                     success: function (data) {
                         if (data) {
-                            alert('Uspesno registovan vozac');             //////////////// jel treba localstorage
+                            alert('Uspesno registovan vozac');             
                             $(location).attr('href', 'HtmlPage1.html');
                         } else {
                             alert('Vec je registrovan korisnik s tim korisnickim imenom.');
@@ -679,7 +679,7 @@
             });
 
 
-            $("#dodajVoznju").click(function () {    // za musteriju
+            $("#dodajVoznju").click(function () {    // musterija
                 $("#PrikaziVoznjeMusterije").hide();
                 $("#DodavanjeVoznjeMusterija").show();
                 $("#DodavanjeVozaca").hide();
@@ -704,11 +704,11 @@
                 $("#PrikazPretrPoDatMust").hide();
                 $("#map").show();
 
-                let dijelovi = fulAdresa.split(",");
-                let x = dijelovi[0];
-                let y = dijelovi[1];
-                let ulicaIbroj = dijelovi[2];
-                let grad = dijelovi[3]; //sa zipom
+                let dielovi = fulAdresa.split(",");
+                let x = dielovi[0];
+                let y = dielovi[1];
+                let ulicaIbroj = dielovi[2];
+                let grad = dielovi[3]; //sa zipom
 
                
                 let adresaDolazak = {
@@ -744,7 +744,7 @@
                     dataType: 'json',
                     success: function (data) {
                         if (data) {
-                            alert('Uspesno unesena voznja');             //////////////// jel treba localstorage
+                            alert('Uspesno unesena voznja');             
                             $(location).attr('href', 'HtmlPage1.html');
                         } else {
                             alert('Vec je drugi taxista na toj lokaciji.');
@@ -754,7 +754,7 @@
             });
 
 
-            $("#dodajVoznjuDisp").click(function () {    // za dispecera
+            $("#dodajVoznjuDisp").click(function () {    // dispecer
                 $("#PrikaziVoznjeMusterije").hide();
                 $("#DodavanjeVoznjeMusterija").hide();
                 $("#PrikaziVoznjeDispecerSve").hide();
@@ -774,7 +774,7 @@
 
 
 
-            $("#dodajVoznjuDispecer").click(function () {    // za dispecera
+            $("#dodajVoznjuDispecer").click(function () {   
                 $("#map").show();
                 $.get("/api/Vozac", function (data, status) {
                     let pom = `${$('#tipauDisp').val()}`
@@ -817,11 +817,11 @@
                 $("#DodavanjeVoznjeDispecer").show();
                 $("#map").show();
 
-                let dijelovi = fulAdresa.split(",");
-                let x = dijelovi[0];
-                let y = dijelovi[1];
-                let ulicaIbroj = dijelovi[2];
-                let grad = dijelovi[3]; //sa zipom
+                let dielovi = fulAdresa.split(",");
+                let x = dielovi[0];
+                let y = dielovi[1];
+                let ulicaIbroj = dielovi[2];
+                let grad = dielovi[3]; //sa zipom
 
                 let adresaDolazak = {
                     IdAdr: "",
@@ -858,7 +858,7 @@
                     dataType: 'json',
                     success: function (data) {
                         if (data) {
-                            alert('Uspesno unesena voznja');             //////////////// jel treba localstorage
+                            alert('Uspesno unesena voznja');             
                             $(location).attr('href', 'HtmlPage1.html');
                         } else {
                             alert('Vec je drugi taxista na toj lokaciji.');
@@ -1005,22 +1005,22 @@
                 $("#IzmenaKorisnik").hide();
                 $("#PrikazKorisnik").hide();
                 $.get("/api/Voznja", function (data, status) {
-                    let ocjene = [];
+                    let ocene = [];
                     for (voznja in data) {
                         if (dataP.KorisnickoIme == data[voznja].MusterijaVoznja) {
-                            ocjene.push(data[voznja].Komentar.Ocena)
+                            ocene.push(data[voznja].Komentar.Ocena)
                         }
                     }
-                    ocjene.sort(function (a, b) {
+                    ocene.sort(function (a, b) {
                         return b - a;
                     });
 
                     let tableOfProducts = "<table border='1'>";
                     tableOfProducts += `<tr><th>Mušterija vožnje</th><th>Dat. porudž.</th><th>Ulica i br. dolaska</th><th>Mjesto dol.</th><th>Pozivni br. dol.</th><th>Status vož.</th><th>Opis kom.</th><th>Ocena kom.</th><th>Dat. obj. kom. vož.</th><th> </th><th> </th></tr>`;
-                    for (o in ocjene) {
+                    for (o in ocene) {
                         for (voznja in data) {
                             if (dataP.KorisnickoIme == data[voznja].MusterijaVoznja) {
-                                if (ocjene[o] == data[voznja].Komentar.Ocena) {
+                                if (ocene[o] == data[voznja].Komentar.Ocena) {
                                     tableOfProducts += `<tr><td>${data[voznja].MusterijaVoznja}</td><td>${data[voznja].DTPorudzbine}</td><td>${data[voznja].Dolazak.Adresa.UlicaIBroj}</td><td>${data[voznja].Dolazak.Adresa.NaseljenoMesto}</td><td>${data[voznja].Dolazak.Adresa.PozivniBroj}</td>`;
                                     if (data[voznja].StatusVoznje == 0) {
                                         tableOfProducts += '<td>Kreirana</td>';
